@@ -1,0 +1,14 @@
+{
+    "compilerOptions": {
+        //VERSÃO DO JS QUE SERÁ TRANSPILADA
+        "target": "ES2023", 
+        //DIRETORIO ONDE SERÁ TRANSPILADA
+        "outDir": "./dist/js/",
+        //SÓ TRANSPILARÁ AO NÃO OCORRER ERROS NO TS
+        "noEmitOnError": true
+    },
+    "include": [
+        //INCLUI TODOS OS ARQUIVOS CRIADOS NA PASTA SRC
+        "./src/**/*"
+    ]
+}
