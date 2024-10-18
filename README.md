@@ -11,6 +11,10 @@
 </div>
 
 ## ☕ Time
-<a href="https://github.com/DiegoSabala" target="_blank">
-    <img src="https://avatars.githubusercontent.com/u/138517578?v=4" alt="Diego Sabala" width="100" height="100"/>
-</a>
+<div style="display: block;">
+  <a href="https://github.com/DiegoSabala" target="_blank">
+    <img src="https://avatars.githubusercontent.com/u/138517578?v=4" alt="Diego Sabala" width="115"><br>
+  </a>
+  <span style="text-align: center;">Diego Sabala</span>
+</div>
+
