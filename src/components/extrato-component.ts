@@ -17,7 +17,6 @@ function extratoUpdate(){
         valorElement.textContent = currencyFormatter(transacoes[i].valor);
         dataElement.textContent = dateFormatter(transacoes[i].data);
 
-
         i++
     }
 }
