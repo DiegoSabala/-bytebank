@@ -1,5 +1,5 @@
 import { DateFormat } from "../types/enums.js";
-export function saldoFomatter(saldo) {
+export function currencyFormatter(saldo) {
     return saldo.toLocaleString("pt-br", {
         currency: "BRL",
         style: "currency"

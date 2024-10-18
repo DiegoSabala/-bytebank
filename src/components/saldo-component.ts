@@ -1,25 +1,27 @@
-import { DateFormat, TipoTransacao } from "../types/enums.js";
-import { dateFormatter, saldoFomatter } from "../utils/formatters.js";
-
-let saldo: number = 1500;
+import Conta from "../types/Conta.js";
+import { DateFormat } from "../types/enums.js";
+import { dateFormatter, currencyFormatter } from "../utils/formatters.js";
 
 //ADICIONA UM VALOR NO SALDO E RETORNA NA TELA
-export const elementoSaldo = document.querySelector('.saldo-valor .valor') as HTMLElement;
-const elementoDataAccess = document.querySelector('.block-saldo time') as HTMLElement;
+const elementoSaldo = document.querySelector('.saldo-valor .valor') as HTMLElement;
+const elementDateAccess = document.querySelector('.block-saldo time') as HTMLElement;
 
-
-if (elementoDataAccess != null){
-    const data: Date = new Date();
-    elementoDataAccess.textContent = dateFormatter(data, DateFormat.DIA_SEMANA_DIA_MES_ANO);
+if (elementDateAccess != null){
+    elementDateAccess.textContent = dateFormatter(Conta.getDataAcesso(), DateFormat.DIA_SEMANA_DIA_MES_ANO);
 }
 
-export const getSaldo = () => {return saldo};
-
-export const saldoUpdate = (saldo: number) => {
+const saldoRender = () => {
     if (elementoSaldo != null){
-        elementoSaldo.textContent = saldoFomatter(saldo);    
+        elementoSaldo.textContent = currencyFormatter(Conta.getSaldo());    
     }  
 }
-saldoUpdate(saldo);
 
+saldoRender();
 
+const SaldoComponent = {
+    
+    update: function () { saldoRender()}
+
+}
+
+export default SaldoComponent;
