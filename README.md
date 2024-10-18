@@ -1,6 +1,6 @@
 <h1>Bytebank</h1>
 
-<h2>❔ Sobre</h2>
+<h2>🏷️ Sobre</h2>
 <p>Projeto desenvolvido para o curso de typescript da Alura, para a pagina de um banco virtual que permite transferencias, depósitos e pagamentos de Boleto.</p>
 
 ## 🚅 Tecnologias
