@@ -1,7 +1,5 @@
 <h1>Bytebank</h1>
 
-> :construction: Projeto em construção :construction:
-
 ##🔎 Indice
 1. 
 
