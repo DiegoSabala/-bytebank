@@ -3,7 +3,7 @@ import { DateFormat } from "../types/enums.js";
 import { currencyFormatter, dateFormatter } from "../utils/formatters.js";
 const elementoRegistroTransacoesExtrato = document.querySelector(".extrato .registro-transacoes");
 extratoRender();
-export function extratoRender() {
+function extratoRender() {
     const gruposTransacoes = Conta.getGruposTransacoes();
     //CASO NÃO HÁ TRANSAÇÕES ARMAZENADAS
     if (!gruposTransacoes.length) {
@@ -35,3 +35,9 @@ export function extratoRender() {
     }
     elementoRegistroTransacoesExtrato.innerHTML = htmlRegistroTransacoes;
 }
+const ExtratoComponent = {
+    update() {
+        extratoRender();
+    }
+};
+export default ExtratoComponent;

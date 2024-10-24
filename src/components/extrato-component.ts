@@ -6,7 +6,7 @@ import { currencyFormatter, dateFormatter } from "../utils/formatters.js";
 const elementoRegistroTransacoesExtrato: HTMLElement =  document.querySelector(".extrato .registro-transacoes")
 
 extratoRender();
-export function extratoRender(): void {
+function extratoRender(): void {
     const gruposTransacoes: GrupoTransacao[] = Conta.getGruposTransacoes();
 
     //CASO NÃO HÁ TRANSAÇÕES ARMAZENADAS
@@ -43,3 +43,11 @@ export function extratoRender(): void {
 
     elementoRegistroTransacoesExtrato.innerHTML = htmlRegistroTransacoes;
 }
+
+const ExtratoComponent = {
+    update(): void{
+        extratoRender();
+    }
+}
+
+export default ExtratoComponent;

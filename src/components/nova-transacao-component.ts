@@ -2,7 +2,7 @@
 import Conta from "../types/Conta.js";
 import { TipoTransacao } from "../types/enums.js";
 import { Transacao } from "../types/Transacao.js";
-import { extratoRender } from "./extrato-component.js";
+import ExtratoComponent from "./extrato-component.js";
 import SaldoComponent from "./saldo-component.js";
 
 //ACESSANDO O FORMULÁRIO E VERIFICANDO SE ESTÁ PREENCHIDO
@@ -25,7 +25,7 @@ elementoFormulario.addEventListener('submit', function(event) {
         
         let tipoTransacao: TipoTransacao = inputTipoTransação.value as TipoTransacao;
         let valor: number = inputValor.valueAsNumber;
-        let data: Date = new Date(inputData.value);
+        let data: Date = new Date(inputData.value + " 00:00:00");
         
         //CRIANDO O OBJETO DA TRANSAÇÃO
         const novaTransacao: Transacao = {
@@ -36,11 +36,12 @@ elementoFormulario.addEventListener('submit', function(event) {
         
         Conta.registrarTransacao(novaTransacao);
         SaldoComponent.update();
-        extratoRender();
+        ExtratoComponent.update();
         
         // Conta.novoRegistroDeTransacao(novaTransacao);
         
         elementoFormulario.reset();
+        ;
     }
     catch (erro) {
         erro instanceof Error ? alert (erro.message) : alert('Ocorreu um erro inesperado!');

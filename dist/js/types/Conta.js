@@ -58,6 +58,7 @@ const Conta = {
         }
         else if (novaTransacao.tipoTransacao === TipoTransacao.TRANFERENCIA || novaTransacao.tipoTransacao === TipoTransacao.PAGAMENTO_BOLETO) {
             debitar(novaTransacao.valor);
+            novaTransacao.valor *= -1;
         }
         else {
             throw new Error('Tipo de transação inválida', { cause: 'erro em registrarTransacao()' });
@@ -65,6 +66,27 @@ const Conta = {
         transacoes.push(novaTransacao);
         console.log(this.getGruposTransacoes());
         localStorage.setItem('transacoes', JSON.stringify(transacoes));
+    },
+    agruparTransacoes() {
+        const resumo = {
+            totalDepositos: 0,
+            totalPagamentosBoleto: 0,
+            totalTransferencias: 0
+        };
+        this.transacoes.forEach(transacao => {
+            switch (transacao.tipoTransacao) {
+                case TipoTransacao.DEPOSITO:
+                    resumo.totalDepositos += transacao.valor;
+                    break;
+                case TipoTransacao.PAGAMENTO_BOLETO:
+                    resumo.totalPagamentosBoleto += transacao.valor;
+                    break;
+                case TipoTransacao.TRANFERENCIA:
+                    resumo.totalTransferencias += transacao.valor;
+                    break;
+            }
+        });
+        return resumo;
     },
 };
 export default Conta;
