@@ -1,22 +1,45 @@
-import Conta from "../types/Conta";
-import { Transacao } from "../types/Transacao";
-import { currencyFormatter, dateFormatter } from "../utils/formatters";
+import Conta from "../types/Conta.js";
+import { DateFormat } from "../types/enums.js";
+import { GrupoTransacao } from "../types/GrupoTransacao.js";
+import { currencyFormatter, dateFormatter } from "../utils/formatters.js";
 
+const elementoRegistroTransacoesExtrato: HTMLElement =  document.querySelector(".extrato .registro-transacoes")
 
-function extratoUpdate(){
-    let transacoes: Transacao[] = Conta.getRegistroDeTransacoes();
-    let i: number = 0;
+extratoRender();
+export function extratoRender(): void {
+    const gruposTransacoes: GrupoTransacao[] = Conta.getGruposTransacoes();
 
-    while(i < transacoes.length){
-
-        let tipoElement = document.querySelector(".transacoes-group .tipo") as HTMLElement;
-        let valorElement =  document.querySelector(".transacoes-group .valor") as HTMLElement;
-        let dataElement =  document.querySelector(".transacoes-group .data") as HTMLElement;
-
-        tipoElement.textContent = transacoes[i].tipoTransacao;
-        valorElement.textContent = currencyFormatter(transacoes[i].valor);
-        dataElement.textContent = dateFormatter(transacoes[i].data);
-
-        i++
+    //CASO NÃO HÁ TRANSAÇÕES ARMAZENADAS
+    if (!gruposTransacoes.length){
+        elementoRegistroTransacoesExtrato.innerHTML = "<div>Não há transações registradas.</div>"
+        return;
     }
+
+    elementoRegistroTransacoesExtrato.innerHTML = "";
+    let htmlRegistroTransacoes: string = "";
+
+    for (let grupoTransacoes of gruposTransacoes){
+        let htmlTransacaoItem: string = "";
+        for (let transacao of grupoTransacoes.transacoes){
+            htmlTransacaoItem += `
+            <div class="transacao-item">
+                <div class="transacao-info"> 
+                    <span class="tipo">${transacao.tipoTransacao}</span>
+                    <strong class="valor">${currencyFormatter(transacao.valor)}</strong>
+                </div>
+                <time class="data">${dateFormatter(transacao.data, DateFormat.DIA_MES)}</time>
+            </div>
+            `
+        }
+
+        htmlRegistroTransacoes += `
+        <div class="registro-transacoes">
+            <div class="transacoes-group">
+                <strong class="mes-group">${grupoTransacoes.label}</strong>
+                ${htmlTransacaoItem}
+        </div>
+        `
+    }
+
+    elementoRegistroTransacoesExtrato.innerHTML = htmlRegistroTransacoes;
 }

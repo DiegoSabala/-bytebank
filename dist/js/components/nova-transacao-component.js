@@ -1,4 +1,5 @@
 import Conta from "../types/Conta.js";
+import { extratoRender } from "./extrato-component.js";
 import SaldoComponent from "./saldo-component.js";
 //ACESSANDO O FORMULÁRIO E VERIFICANDO SE ESTÁ PREENCHIDO
 const elementoFormulario = document.querySelector('.block-nova-transacao form');
@@ -25,8 +26,8 @@ elementoFormulario.addEventListener('submit', function (event) {
         };
         Conta.registrarTransacao(novaTransacao);
         SaldoComponent.update();
+        extratoRender();
         // Conta.novoRegistroDeTransacao(novaTransacao);
-        console.log(novaTransacao);
         elementoFormulario.reset();
     }
     catch (erro) {

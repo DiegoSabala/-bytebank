@@ -2,6 +2,7 @@
 import Conta from "../types/Conta.js";
 import { TipoTransacao } from "../types/enums.js";
 import { Transacao } from "../types/Transacao.js";
+import { extratoRender } from "./extrato-component.js";
 import SaldoComponent from "./saldo-component.js";
 
 //ACESSANDO O FORMULÁRIO E VERIFICANDO SE ESTÁ PREENCHIDO
@@ -26,7 +27,6 @@ elementoFormulario.addEventListener('submit', function(event) {
         let valor: number = inputValor.valueAsNumber;
         let data: Date = new Date(inputData.value);
         
-        
         //CRIANDO O OBJETO DA TRANSAÇÃO
         const novaTransacao: Transacao = {
             tipoTransacao: tipoTransacao,
@@ -36,10 +36,9 @@ elementoFormulario.addEventListener('submit', function(event) {
         
         Conta.registrarTransacao(novaTransacao);
         SaldoComponent.update();
+        extratoRender();
         
         // Conta.novoRegistroDeTransacao(novaTransacao);
-        
-        console.log(novaTransacao);
         
         elementoFormulario.reset();
     }
