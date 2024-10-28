@@ -1,6 +1,5 @@
 <h1>Bytebank</h1>
 
-##🔎 Indice
 1. 
 
 <h2>🏷️ Sobre</h2>
